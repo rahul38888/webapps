@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Invitation update</title>
+
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      background: linear-gradient(145deg, #3498db, #8e44ad);
+      color: #333;
+    }
+
+    .container {
+      background-color: rgba(169, 169, 169, 0.3);
+      padding: 50px 20px 50px 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<script type="text/javascript">
+    Telegram.WebApp.ready();
+    Telegram.WebApp.MainButton.setText('Update').show().onClick(function () {
+        const data = JSON.stringify({update_level: 1, inm: document.getElementById("inm").value, st: document.getElementById("st").checked});
+        Telegram.WebApp.sendData(data);
+        Telegram.WebApp.close();
+    });
+</script>
+<body class="d-flex align-items-center justify-content-center vh-100">
+
+  <div class="container">
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Invitation name</span>
+      </div>
+      <input type="text" class="form-control" id="inm" />
+    </div>
+
+    <div class="form-check form-switch">
+      <label class="form-check-label" for="st">Status</label>
+      <input class="form-check-input" type="checkbox" role="switch" id="st" checked>
+    </div>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+<script type="text/javascript">
+    Telegram.WebApp.expand();
+</script>
+</html>
