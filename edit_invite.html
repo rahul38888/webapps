@@ -21,16 +21,18 @@
   </style>
 </head>
 <script type="text/javascript">
-    Telegram.WebApp.ready();
-    Telegram.WebApp.MainButton.setText('Update').show().onClick(function () {
-        const data = JSON.stringify({update_level: 1, inm: document.getElementById("inm").value, st: document.getElementById("st").checked});
-        Telegram.WebApp.sendData(data);
-        Telegram.WebApp.close();
-    });
+
+  Telegram.WebApp.ready();
+  Telegram.WebApp.MainButton.setText('Update').show().onClick(function () {
+      const data = JSON.stringify({update_level: 1, inm: document.getElementById("inm").value, st: document.getElementById("st").checked});
+      Telegram.WebApp.sendData(data);
+      Telegram.WebApp.close();
+  });
 </script>
 <body class="d-flex align-items-center justify-content-center vh-100">
-
+  <hr>
   <div class="container">
+    <p class="h1 text-center mb-3" id="inm_header">Test</p>
 
     <div class="input-group mb-3">
       <div class="input-group-prepend">
@@ -50,6 +52,19 @@
 
 </body>
 <script type="text/javascript">
+
+    const params = new URLSearchParams(window.location.search);
+    if (params.has("data")) {
+      data = JSON.parse(decodeURIComponent(params.get("data")))
+      inm = data["inm"]
+      st = true
+      if(data["st"] == 'i') {
+        st = false
+      }
+      document.getElementById("inm_header").innerHTML = inm
+      document.getElementById("inm").value = inm
+      document.getElementById("st").checked = st
+    }
     Telegram.WebApp.expand();
 </script>
 </html>
